@@ -57,7 +57,7 @@ with tabs[0]:
             input_data = scaler.transform([[heart_rate, breathing_rate, temperature, movement,
                                             sound_level, oxygen_saturation, sleep_duration, blood_pressure]])
             prediction = model.predict(input_data)
-            stress_level = '😰 High Stress' if prediction[0] == 1 else '🙂 Low Stress'
+            stress_level = '🙂 Low Stress' if prediction[0] == 1 else '😰 High Stress'
             st.success(f'Predicted Stress Level: **{stress_level}**')
 
 with tabs[1]:
@@ -67,7 +67,7 @@ with tabs[1]:
         data = pd.read_csv(uploaded_file)
         data_scaled = scaler.transform(data)
         predictions = model.predict(data_scaled)
-        data['Stress Level'] = ['High' if p == 1 else 'Low' for p in predictions]
+        data['Stress Level'] = ['Low' if p == 1 else 'High' for p in predictions]
         st.dataframe(data)
 
         # Stress Level Distribution
